@@ -1968,7 +1968,7 @@ var defaults = $.fn.steps.defaults = {
      **/
     labels: {
         slide: 'Add Slide',
-        delete: 'Delete'
+        delete: 'Delete',
         /**
          * Label for the cancel button.
          *
