@@ -795,6 +795,8 @@ function paginationClickHandler(event)
 
         case "finish":
             finishStep(wizard, state);
+            $('#editor').addClass('ng-hide');
+            $('#config').removeClass('ng-hide');
             break;
 
         case "next":
@@ -805,15 +807,27 @@ function paginationClickHandler(event)
             goToPreviousStep(wizard, options, state);
             break;
         case 'delete':
+            var i = state.currentIndex;
+            if (state.stepCount <= 1) {
+              alert('If you want to delete this slideshow, please go back to your account and delete it there.');
+              return;
+            }
+            if (i === 0) {
+              goToNextStep(wizard, options, state);
+            } else {
+              goToPreviousStep(wizard, options, state);
+            }
+            $('#wizard').steps('remove', i);
             break;
         case 'slide':
-            var tmp = state.currentIndex === 0 ? state.currentIndex : state.currentIndex + 1;
+            var tmp = state.stepCount === 0 ? state.currentIndex : state.currentIndex + 1;
             $('#wizard').steps('insert', tmp, {
               title: '',
               content: ''
             });
             $('#wizard .content #wizard-p-' + tmp).html('<textarea class=".text-editor" name="content" data-provide="markdown" rows="20"></textarea>');
             markdownEditor();
+            goToNextStep(wizard, options, state);
             break;
     }
 }
@@ -949,11 +963,11 @@ function registerEvents(wizard, options)
  **/
 function removeStep(wizard, options, state, index)
 {
-    // Index out of range and try deleting current item will return false.
-    // if (index < 0 || index >= state.stepCount || state.currentIndex === index)
-    // {
-    //     return false;
-    // }
+    //Index out of range and try deleting current item will return false.
+    if (index < 0 || index >= state.stepCount || state.currentIndex === index)
+    {
+        return false;
+    }
 
     // Change data
     removeStepFromCache(wizard, index);
