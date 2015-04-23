@@ -807,7 +807,7 @@ function paginationClickHandler(event)
         case 'delete':
             break;
         case 'slide':
-            var tmp = state.currentIndex + 1;
+            var tmp = state.currentIndex === 0 ? state.currentIndex : state.currentIndex + 1;
             $('#wizard').steps('insert', tmp, {
               title: '',
               content: ''
