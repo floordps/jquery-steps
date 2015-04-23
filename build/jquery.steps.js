@@ -592,13 +592,13 @@ function initialize(options)
  **/
 function insertStep(wizard, options, state, index, step)
 {
+
     if (index < 0 || index > state.stepCount)
     {
         throwError(_indexOutOfRangeErrorMessage);
     }
 
     // TODO: Validate step object
-
     // Change data
     step = $.extend({}, stepModel, step);
     insertStepToCache(wizard, index, step);
@@ -804,6 +804,17 @@ function paginationClickHandler(event)
         case "previous":
             goToPreviousStep(wizard, options, state);
             break;
+        case 'delete':
+            break;
+        case 'slide':
+            var tmp = state.currentIndex + 1;
+            $('#wizard').steps('insert', tmp, {
+              title: '',
+              content: ''
+            });
+            $('#wizard .content #wizard-p-' + tmp).html('<textarea class=".text-editor" name="content" data-provide="markdown" rows="20"></textarea>');
+            markdownEditor();
+            break;
     }
 }
 
@@ -939,10 +950,10 @@ function registerEvents(wizard, options)
 function removeStep(wizard, options, state, index)
 {
     // Index out of range and try deleting current item will return false.
-    if (index < 0 || index >= state.stepCount || state.currentIndex === index)
-    {
-        return false;
-    }
+    // if (index < 0 || index >= state.stepCount || state.currentIndex === index)
+    // {
+    //     return false;
+    // }
 
     // Change data
     removeStepFromCache(wizard, index);
@@ -1710,7 +1721,7 @@ var defaults = $.fn.steps.defaults = {
      * @default "<span class=\"number\">#index#.</span> #title#"
      * @for defaults
      **/
-    titleTemplate: "<span class=\"number\">#index#.</span> #title#",
+    titleTemplate: "<span class=\"number\">Slide #index#</span> #title#",
 
     /**
      * The loading template which will be used to create the loading animation.
