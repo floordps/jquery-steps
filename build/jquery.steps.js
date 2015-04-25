@@ -795,8 +795,6 @@ function paginationClickHandler(event)
 
         case "finish":
             finishStep(wizard, state);
-            $('#editor').addClass('ng-hide');
-            $('#config').removeClass('ng-hide');
             break;
 
         case "next":
@@ -829,6 +827,10 @@ function paginationClickHandler(event)
             markdownEditor();
             goToNextStep(wizard, options, state);
             break;
+        case 'settings':
+          $('#editor').addClass('ng-hide');
+          $('#config').removeClass('ng-hide');
+          break;
     }
 }
 
@@ -1090,6 +1092,7 @@ function renderPagination(wizard, options, state)
 
         buttons += buttonTemplate.format("next", options.labels.next);
         buttons += buttonTemplate.format('slide', options.labels.slide);
+        buttons += buttonTemplate.format("settings", options.labels.settings);
 
         if (options.enableFinishButton)
         {
@@ -1994,6 +1997,7 @@ var defaults = $.fn.steps.defaults = {
     labels: {
         slide: 'Add Slide',
         delete: 'Delete',
+        settings: 'Settings',
         /**
          * Label for the cancel button.
          *
