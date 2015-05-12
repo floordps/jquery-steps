@@ -823,8 +823,8 @@ function paginationClickHandler(event)
               title: '',
               content: ''
             });
-            $('#wizard .content #wizard-p-' + tmp).html('<textarea class=".text-editor" name="content" data-provide="markdown" rows="20"></textarea>');
-            markdownEditor();
+            $('#wizard .content #wizard-p-' + tmp).html('<textarea></textarea>');
+            activeCkeditor();
             goToNextStep(wizard, options, state);
             break;
         case 'settings':
