@@ -823,7 +823,7 @@ function paginationClickHandler(event)
               title: '',
               content: ''
             });
-            $('#wizard .content #wizard-p-' + tmp).html('<textarea class=".text-editor" name="content" data-provide="markdown" rows="20"></textarea>');
+            $('#wizard .content #wizard-p-' + tmp).html('<textarea class=".text-editor" name="content" data-provide="markdown" rows="28"></textarea>');
             markdownEditor();
             goToNextStep(wizard, options, state);
             break;
