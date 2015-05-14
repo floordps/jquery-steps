@@ -1,5 +1,5 @@
 ﻿/*
-    Common
+    Common 
 */
 
 .wizard,
@@ -63,9 +63,7 @@
 {
     display: inline;
     float: left;
-    width: 15%;
-    overflow-y: auto;
-    height: 35em;
+    width: 30%;
 }
 
 .wizard > .steps .number
@@ -94,8 +92,6 @@
 .wizard > .steps a:hover,
 .wizard > .steps a:active
 {
-    background-color: #9DC8E2;
-    color: #FFF;
     display: block;
     width: auto;
     margin: 0 0.5em 0.5em;
@@ -231,11 +227,10 @@
 
 .wizard.vertical > .actions
 {
-    display: inline-block;
+    display: inline;
     float: right;
     margin: 0 2.5%;
     width: 95%;
-    text-align: center;
 }
 
 .wizard > .actions > ul
